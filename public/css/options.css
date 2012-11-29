@@ -1,0 +1,72 @@
+/* ====== VibeOptions ====== */
+
+#vibeoptions{
+	position: fixed;
+	top: 15%;
+	right: 0;
+	width: 200px;
+	height: auto;
+	display: block;
+	background: #f9f9f9;
+	border: 1px solid #EFEFEF;
+	text-align: center;
+	z-index: 99999;
+}
+
+#vibeoptions_text{
+	background:url('../img/options_clickhere.png') no-repeat left top;
+	display: block;
+	width: 148px;
+	height: 44px;
+	margin-left: -192px;
+	margin-top: -10px;
+}
+#vibeoptions .vibe_active{
+	border: 2px solid #0db4e4 !important;
+	margin: 3px;
+}
+
+#vibeoptions .vibe_active.last {
+	margin: 4px 3px !important;
+}
+#vibeoptions #vibeoptionsopener{
+	margin-left: -32px;
+	width: 32px;
+	height: 32px;
+	display: block;
+	background: url('../img/options_icon.png') no-repeat left top;
+	float: left;
+
+}
+#vibeoptions h4{
+	clear: both;
+	margin: 0 10px;
+	padding: 10px 0;
+}
+#coloroptions,
+#backgroundoptions,
+#bgoptions,
+#layoutoptions{
+	padding: 0 20px;
+	list-style:none;
+}
+#layoutoptions li{
+	width: 60px;
+	margin: 5px;
+	float: left;
+	cursor:pointer;
+}
+#coloroptions li,
+#backgroundoptions li,
+#bgoptions li{
+	width: 30px;
+	height: 20px;
+	margin: 5px 3px 5px 5px;
+	float: left;
+	display: block;
+	border: 1px solid #efefef;
+	text-indent: -9999px;
+	cursor:pointer;
+}
+
+

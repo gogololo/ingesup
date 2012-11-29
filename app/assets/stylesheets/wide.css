@@ -1,0 +1,35 @@
+#bg_effect{
+	background: none;
+}
+
+.tagline{
+	border: 1px solid #DDD;
+	background: #EEE;
+	padding: 30px;
+	margin: 20px 0 30px;
+	text-align: center;
+}
+
+.slider_container,
+.sampleslider_container,
+section.main-section{
+	background: none !important;
+	-webkit-box-shadow: none !important;
+	-moz-box-shadow: none !important;
+	box-shadow: none !important;
+	border:none !important;
+	position: relative;
+}
+
+.slider_container{
+    margin: 10px 0px;
+	border: 5px solid #EEE;
+}
+
+footer{
+	background: #2F3335;
+}
+
+.flex-active-slide .home_thumbcarousel1 {
+  border-bottom: none;
+}
