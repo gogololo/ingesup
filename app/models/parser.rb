@@ -45,7 +45,7 @@ class Parser
       result = {}
       el = tr.search('td:eq(2)').first
       next if not el
-	  result['title'] = el.content
+	  result['team'] = el.content
 	  
 	  pts = tr.search('td:eq(3)').first
 	  next if not pts
