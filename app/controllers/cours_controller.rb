@@ -20,7 +20,7 @@ class CoursController < ApplicationController
 	end
 	
 	def ffhb
-		result = Parser.last_result
+		result = Parser.journee
 		render :json => result
 	end
 end
