@@ -1,10 +1,10 @@
 class Parser
-  def self.last_result
+  def self.last_result(url)
     i = self.new
     cache = Rails.cache.read('result')
     
 #    return cache if cache
-    i.fetch
+    i.fetch(url)
   end
   
   def self.journee
@@ -15,8 +15,9 @@ class Parser
     i.fetchJ
   end
   
-  def fetch
-    @url = "http://www.ff-handball.org/competitions/championnats-nationaux-mf/n2m/resultats.html"
+  def fetch(url)
+    #@url = "http://www.ff-handball.org/competitions/seniors-masculins/championnats-nationaux/n2m/resultats.html"
+    @url = url
     Rails.logger.debug('=================> HTTP CALL')
     @response = HTTParty.get(@url) # BLOCKING
     #Mise en cache
@@ -39,53 +40,41 @@ class Parser
   
   def parseresult
     @result = []
+    classement = []
     doc = Nokogiri::HTML(@response)
     
-    doc.css('.lgClassmt table tr').each do |tr|
-      result = {}
-      el = tr.search('td:eq(2)').first
-      next if not el
-	  result['team'] = el.content
-	  
-	  pts = tr.search('td:eq(3)').first
-	  next if not pts
-	  result['points'] = pts.content
-	  
-	  joue = tr.search('td:eq(4)').first
-	  next if not joue
-	  result['joue'] = joue.content
-	  
-	  gagne = tr.search('td:eq(5)').first
-	  next if not gagne
-	  result['gagne'] = gagne.content
-	  
-	  nul = tr.search('td:eq(6)').first
-	  next if not nul
-	  result['nul'] = nul.content
-	  
-	  perdu = tr.search('td:eq(7)').first
-	  next if not perdu
-	  result['perdu'] = perdu.content
-	  
-	  but1 = tr.search('td:eq(8)').first
-	  next if not but1
-	  result['but+'] = but1.content
-	  
-	  but0 = tr.search('td:eq(9)').first
-	  next if not but0
-	  result['but-'] = but0.content
-	  
-	  diff = tr.search('td:eq(10)').first
-	  next if not diff
-	  result['diff'] = diff.content
-	  
-      @result.push(result)
-    end    
+    doc.css('.round table tr').each do |num|
+    	cls = {}
+    	     
+    	rang = num.search('td.num').first
+    	next if not rang
+    	cls['rang'] = rang.content
+    	
+    	el = num.search('td.eq').first
+    	next if not el
+    	cls['team'] = el.content
+    	
+    	pts = num.search('td.pts').first
+    	next if not pts
+    	cls['points'] = pts.content
+    	
+    	j = num.search('td')
+    	next if not j
+    	cls['journee'] = j[3].content
+    	cls['gagne'] = j[4].content
+    	cls['nuls'] = j[5].content
+    	cls['points'] = j[6].content
+    	cls['but+'] = j[7].content
+    	cls['but-'] = j[8].content
+    	cls['diff'] = j[9].content
+    	
+    	@result.push(cls)
+    end   
     @result
   end
   
   def parsejournee
-    @resultJ = []
+    @resultJ = {}
     doc = Nokogiri::HTML(@response)
     Rails.logger.debug('=================> Journee')
 
@@ -113,8 +102,11 @@ class Parser
     	next if not equipe2
     	journee['equipe2'] = equipe2.content
     	  
-      @resultJ.push(journee)
+      #@resultJ.push(journee)
+      myjournee = "journee_"+i.to_s
+      @resultJ[myjournee] = journee
       i = i+1
+      
     end
     
     @resultJ

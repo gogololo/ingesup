@@ -6,11 +6,11 @@
 	border: 1px solid #DDD;
 	background: #EEE;
 	padding: 30px;
-	margin: 20px 0 30px;
+	/*margin: 20px 0 30px;*/
 	text-align: center;
 }
 
-.slider_container,
+/*.slider_container,
 .sampleslider_container,
 section.main-section{
 	background: none !important;
@@ -19,7 +19,7 @@ section.main-section{
 	box-shadow: none !important;
 	border:none !important;
 	position: relative;
-}
+}*/
 
 .slider_container{
     margin: 10px 0px;
