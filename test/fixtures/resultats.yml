@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  rang: MyString
+  team: MyString
+  points: 1
+  journee: 1
+  gagne: 1
+  nuls: 1
+  but+: 1
+  but-: 1
+  diff: 1
+
+two:
+  rang: MyString
+  team: MyString
+  points: 1
+  journee: 1
+  gagne: 1
+  nuls: 1
+  but+: 1
+  but-: 1
+  diff: 1

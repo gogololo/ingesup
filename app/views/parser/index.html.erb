@@ -1,0 +1,34 @@
+<div class="container">
+<div class="row">
+	<section class="main-section">
+		<div class="breadcrumbs">
+			<a href="/parser">Parser</a>/<a>Accueil</a>                        
+		</div>
+		<h2 class="page_title">Selectionner votre équipe</h2>
+	
+	<div class="row">
+		<!-- BEGIN Portfolio ROW-->  		
+		<div class="portfolioarea">
+			<h3 class="title"><span>Championnats nationaux</span></h3>
+		 	<div class="portfolio_carousel flexslider">
+		 	  <ul class="slides">
+		 	    <% @c.each do |c| %>
+		 	    <li>
+		 	      <div class="portfolioitem">
+		 	      	<div class="portfolio_thumb">
+		 	      	  <%= link_to image_tag('hand_wall.jpg'), {:controller => "parser", :action => "viewcat", :catId => c['id'] }, :class => 'hover_fade_in' %>
+		 	      	</div>
+		 	      	<h4 class="portfolio_title"> <%= c['name'] %>
+		 	      	<small class="categories">Nationaux / <%= c['name'] %></small></h4>
+		 	      	</div>
+		 	    </li>
+		 	    <% end %>
+		 	  </ul>
+		 	</div>
+		 	
+		</div> 
+		<!-- END PROJECTS AREA -->
+	</div> 
+ </section>	
+</div>
+</div>
