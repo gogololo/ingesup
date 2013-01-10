@@ -6,6 +6,9 @@ class ParserController < ApplicationController
 	def viewcat
 		@search = Categorie.find(params[:catId])
 		@tab = @search.resultats
+		if !@tab.empty?
+			@last_update = @tab[0]['created_at']
+		end
 	end
 	
 	def classement
