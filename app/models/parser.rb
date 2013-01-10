@@ -28,7 +28,7 @@ class Parser
   end
   
   def fetchJ
-    @url = "http://www.ff-handball.org/competitions/championnats-nationaux-mf/n2m/resultats.html"
+    @url = "http://www.ff-handball.org/competitions/seniors-masculins/championnats-nationaux/n3m/resultats.html"
     Rails.logger.debug('=================> HTTP CALL')
     @response = HTTParty.get(@url) # BLOCKING
     #Mise en cache
@@ -79,32 +79,62 @@ class Parser
     Rails.logger.debug('=================> Journee')
 
     i = 1
-    doc.css('.journee li').each do |li|
+    doc.css('#journeelist').each do |li|
     	
     	journee = {}
-    	el = li.search('.dateH').first
-    	next if not el
-    	journee['date'] = el.content
     	
-    	score = li.search('.score strong').first
-    	next if not score
-    	journee['scorewin'] = score.content
+    	el = li.search('li')
+    	list_j = []
+    	el.each do |l|
+    		list = {}
+    		# Recuperation de la class de la journee
+    		class_j = l['class']
+    		class_split = class_j.split(' ')
+    		tab = li.search('.'+class_split[0]).first
+    		
+    		# Recuperation des titres
+    		titre = tab.search('.titreJour')
+    		next if not titre
+    		list['titre'] = titre.text
+    		
+    		table = tab.search('table')
+    		content_j = []
+    		table.each do |tb|
+    			j = {}
+    			# Recuperation de la date du match
+    			date = tb.search('td.date')
+    			next if not date
+    			d = date.text
+    			j['date'] = d
+    			
+    			#Recuperation des equipes du match
+    			teams = tb.search ('td.eq p')
+    			next if not teams
+    			eq1 = teams[0].text
+    			eq1_split = eq1.split(' ', 2)
+    			j['team1'] = eq1_split[1]
+    			j['team1_score'] = eq1_split[0]
+    			
+    			eq2 = teams[1].text
+    			eq2_split = eq2.split(' ', 2)
+    			j['team2'] = eq2_split[1]
+    			j['team2_score'] = eq2_split[0]
+    			
+    			#Recuperation de la feuille de match
+    			fdm = tb.search('td.fdm a').first
+    			next if not fdm
+    			href = fdm['href']
+    			j['fdm'] = 'http://www.ff-handball.org'+href
+    			
+    			content_j.push(j)
+    		end
+    		list['content'] = content_j
+    		list_j.push(list)
+    	end
+    	journee = list_j
     	
-    	scorel = li.search('.score').first
-    	next if not scorel
-    	journee['score'] = scorel.content
-    	
-    	equipe1 = li.search('.equipe1').first
-    	next if not equipe1
-    	journee['equipe1'] = equipe1.content
-    	
-    	equipe2 = li.search('.equipe2').first
-    	next if not equipe2
-    	journee['equipe2'] = equipe2.content
-    	  
       #@resultJ.push(journee)
-      myjournee = "journee_"+i.to_s
-      @resultJ[myjournee] = journee
+      @resultJ['journee'] = journee
       i = i+1
       
     end
