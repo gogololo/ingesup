@@ -7,12 +7,12 @@ class Parser
     i.fetch(url)
   end
   
-  def self.journee
+  def self.journee(url)
   	i = self.new
     cache = Rails.cache.read('journee')
     
 #    return cache if cache
-    i.fetchJ
+    i.fetchJ(url)
   end
   
   def fetch(url)
@@ -27,8 +27,8 @@ class Parser
     
   end
   
-  def fetchJ
-    @url = "http://www.ff-handball.org/competitions/seniors-masculins/championnats-nationaux/n3m/resultats.html"
+  def fetchJ(url)
+    @url = url
     Rails.logger.debug('=================> HTTP CALL')
     @response = HTTParty.get(@url) # BLOCKING
     #Mise en cache

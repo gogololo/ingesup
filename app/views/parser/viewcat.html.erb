@@ -10,16 +10,15 @@
 		<div class="row">
 				<!-- BEGIN Page Content -->
 		  <div class="content">		
-				<h2 class="page_title">Classement/Resultat</h2>
+				<h2 class="page_title">Classement/Resultats</h2>
 				<div class="span12">
-					<h3>Classement</h3>
 					<div class="btn-toolbar">
 		             <div class="btn-group">
 		               <button class="btn btn-large btn-success">Mettre à jour</button>
 		               <button class="btn btn-large dropdown-toggle btn-success" data-toggle="dropdown"><span class="caret"></span></button>
 		               <ul class="dropdown-menu">
 		                 <li><%= link_to "Classement", {:controller => "parser", :action => "classement", :catId => @search.id } %></li>
-		                 <li><a href="#">Les resultats</a></li>
+		                 <li><%= link_to "Journée", {:controller => "parser", :action => "journee", :catId => @search.id } %></li></li>
 		                 <li class="divider"></li>
 		                 <li><a href="#">Tout</a></li>
 		               </ul>
@@ -30,7 +29,7 @@
 					<div class="tabs">
 						<ul class="nav nav-tabs" id="widget-tabs">
 							<li class="active"><a href="#classement">Classement</a></li>
-							<li><a href="#journee">Journee</a></li>
+							<li><a href="#journee">Journée</a></li>
 						</ul>
 						
 						<div class="tab-content">
@@ -43,8 +42,8 @@
 								      <th>Points</th>
 								      <th>Gagné</th>
 								      <th>Nuls</th>
-								      <th>But+</th>
-								      <th>But-</th>
+								      <th>But +</th>
+								      <th>But -</th>
 								      <th>Diff</th>
 								    </tr>
 								  </thead>
@@ -65,7 +64,51 @@
 								</table>
 							</div>
 							<div class="tab-pane" id="journee">
-								<img src="img/tree.png" class="left" alt="tree" /><p>Twitter BootStrap gives many features including Modals, Popups, Tooltips, Alerts...etc. Since VibeLander is built on Twitter Bootstrap it also supports all the features supported by Bootstrap...</p>
+					            <% @j.each do |j| %>
+								<div class="accordion-group">
+									<div class="accordion-heading">
+									  <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#samere<%= j['id'] %>">
+									     <%= j['title'] %> <i class="right icon-chevron-down"></i>
+									  </a>
+									</div>
+									<div id="samere<%= j['id'] %>" class="accordion-body collapse">
+									  <div class="accordion-inner">
+									  	<% journee = Journee.find(j['id']) %>
+									  	<% content = journee.contents %>
+									  	<% content.each do |c| %>
+									  	<table class="table table-bordered">
+									  		<tr>
+									  	        <td class="date" style="width:20%">
+									  	        	<%= c['date'] %>
+									  	        </td>
+									  	        <td class="eq" style="width:60%">
+									  	            <p  class="win">
+									  	            	<strong>
+									  	            		<strong><%= c['team1core'] %></strong>
+									  	            	</strong> 
+									  	            	<%= c['team1'] %>
+									  	            </p>
+									  	            <p >
+									  	            	<strong>
+									  	            		<strong><%= c['team2score'] %></strong>
+									  	            	</strong> 
+									  	            	<%= c['team2'] %>
+									  	            </p>
+									  	        </td>
+									  	        <td class="fdm" style="width:20%"> 
+									  	        	<center>
+									  	        	<button class="btn">
+									  	        		<a href="<%= c['fdm'] %>"  target="_blank" title="Feuille de match">FDM</a>
+									  	        	</button>
+									  	        	</center>
+									  	        </td>
+									  		</tr>
+									  	</table>
+									  	<% end %>
+									  </div>
+									</div>
+								</div>
+								<% end %>
 							</div>
 						</div>
 					</div>

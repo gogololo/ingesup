@@ -26,33 +26,33 @@ $('body').append("<div id='vibeoptions'>\
 <h4>Background</h4>\
 <ul id='bgoptions'>\
 <li style='background:#fbfbfb;border:1px solid #DDD' class='vibe_active'></li>\
-<li style=\"background:url('img\/bg_img1.png');\">1</li>\
-<li style=\"background:url('img\/bg_img2.png');\">2</li>\
-<li style=\"background:url('img\/bg_img3.png');\">3</li>\
-<li style=\"background:url('img\/bg_img3.png');\">4</li>\
+<li style=\"background:url('..\/img\/bg_img1.png');\">1</li>\
+<li style=\"background:url('..\/img\/bg_img2.png');\">2</li>\
+<li style=\"background:url('..\/img\/bg_img3.png');\">3</li>\
+<li style=\"background:url('..\/img\/bg_img3.png');\">4</li>\
 </ul>\
 <h4>Background Effect</h4>\
 <ul id='backgroundoptions'>\
 <li class='vibe_active'></li>\
-<li style=\"background:url('img\/bg\/bg1.png');\">1</li>\
-<li style=\"background:url('img\/bg\/bg2.png');\">2</li>\
-<li style=\"background:url('img\/bg\/bg3.png');\" class='last'>3</li>\
-<li style=\"background:url('img\/bg\/bg4.png');\" class='last'>4</li>\
-<li style=\"background:url('img\/bg\/bg5.png');\">5</li>\
-<li style=\"background:url('img\/bg\/bg6.png');\">6</li>\
-<li style=\"background:url('img\/bg\/bg13.png');\" class='last'>13</li>\
-<li style=\"background:url('img\/bg\/bg8.png');\" class='last'>8</li>\
-<li style=\"background:url('img\/bg\/bg9.png');\">9</li>\
-<li style=\"background:url('img\/bg\/bg10.png');\">10</li>\
-<li style=\"background:url('img\/bg\/bg11.png');\" class='last'>11</li>\
-<li style=\"background:url('img\/bg\/bg12.png');\" >12</li>\
-<li style=\"background:url('img\/bg\/bg16.png');\" >16</li>\
-<li style=\"background:url('img\/bg\/bg20.png');\" >20</li>\
-<li style=\"background:url('img\/bg\/bg21.png');\" class='last'>21</li>\
-<li style=\"background:url('img\/bg\/bg22.png');\" >22</li>\
-<li style=\"background:url('img\/bg\/bg23.png');\" >23</li>\
-<li style=\"background:url('img\/bg\/bg24.png');\" >24</li>\
-<li style=\"background:url('img\/bg\/bg25.png');\" class='last'>25</li>\
+<li style=\"background:url('..\/img\/bg\/bg1.png');\">1</li>\
+<li style=\"background:url('..\/img\/bg\/bg2.png');\">2</li>\
+<li style=\"background:url('..\/img\/bg\/bg3.png');\" class='last'>3</li>\
+<li style=\"background:url('..\/img\/bg\/bg4.png');\" class='last'>4</li>\
+<li style=\"background:url('..\/img\/bg\/bg5.png');\">5</li>\
+<li style=\"background:url('..\/img\/bg\/bg6.png');\">6</li>\
+<li style=\"background:url('..\/img\/bg\/bg13.png');\" class='last'>13</li>\
+<li style=\"background:url('..\/img\/bg\/bg8.png');\" class='last'>8</li>\
+<li style=\"background:url('..\/img\/bg\/bg9.png');\">9</li>\
+<li style=\"background:url('..\/img\/bg\/bg10.png');\">10</li>\
+<li style=\"background:url('..\/img\/bg\/bg11.png');\" class='last'>11</li>\
+<li style=\"background:url('..\/img\/bg\/bg12.png');\" >12</li>\
+<li style=\"background:url('..\/img\/bg\/bg16.png');\" >16</li>\
+<li style=\"background:url('..\/img\/bg\/bg20.png');\" >20</li>\
+<li style=\"background:url('..\/img\/bg\/bg21.png');\" class='last'>21</li>\
+<li style=\"background:url('..\/img\/bg\/bg22.png');\" >22</li>\
+<li style=\"background:url('..\/img\/bg\/bg23.png');\" >23</li>\
+<li style=\"background:url('..\/img\/bg\/bg24.png');\" >24</li>\
+<li style=\"background:url('..\/img\/bg\/bg25.png');\" class='last'>25</li>\
 </ul>\
 </div>");
 
@@ -88,7 +88,7 @@ $('#vibeoptionsopener').click(function(){
 		$('#backgroundoptions').find('.vibe_active').removeClass('vibe_active');
 		
 		if($(this).text()){
-		var bg='url("img/bg/bg'+$(this).text()+'.png")';
+		var bg='url("../img/bg/bg'+$(this).text()+'.png")';
 		
 		 $('#bg-effect').css({'background': bg});
 		 $('#layoutoptions li:first').trigger('click');
@@ -102,7 +102,7 @@ $('#vibeoptionsopener').click(function(){
     $('#bgoptions li').click(function(){
     	$('#bgoptions').find('.vibe_active').removeClass('vibe_active');
     	if($(this).text()){
-    	var bg='url("img/bg-body'+$(this).text()+'.jpg")';
+    	var bg='url("../img/bg-body'+$(this).text()+'.jpg")';
     	
     	 $('body').css({'background': bg});
     	 $('#layoutoptions li:first').trigger('click');

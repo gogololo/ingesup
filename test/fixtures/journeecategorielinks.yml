@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  journee_id: 1
+  categorie_id: 1
+
+two:
+  journee_id: 1
+  categorie_id: 1

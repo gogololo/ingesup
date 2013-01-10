@@ -9,6 +9,8 @@ class ParserController < ApplicationController
 		if !@tab.empty?
 			@last_update = @tab[0]['created_at']
 		end
+		
+		@j = @search.journees
 	end
 	
 	def classement
@@ -36,7 +38,24 @@ class ParserController < ApplicationController
 	end
 	
 	def journee
-		result = Parser.journee
-		render :json => result
+		catId = params[:catId]
+		search = Categorie.find(catId)
+		url = search.url
+		result = Parser.journee(url)
+		
+		result['journee'].each do |j|
+			journee = Journee.create(:title => j['titre'])
+			
+			Journeecategorielink.create(:journee_id => journee.id, :categorie_id => catId)
+			
+			j['content'].each do |c|
+				content = Content.create(:date => c['date'], :team1 => c['team1'], :team1core => c['team1_score'], :team2 => c['team2'], :team2score => c['team2_score'], :fdm => c['fdm'])
+				
+				Journeecontentlink.create(:content_id => content.id, :journee_id => journee.id)
+			end
+		end
+		
+		#render :json => result
+		redirect_to :back
 	end
 end

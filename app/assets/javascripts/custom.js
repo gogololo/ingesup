@@ -229,7 +229,7 @@ $('#project_carousel2').flexslider({
 
 $(document).ready(function(){
 $('.hover_top_in').mouseenter(function(){
- 		$(this).append('<span style="height:0"><img src="img/magnify.png" /></span>');
+ 		$(this).append('<span style="height:0"><img src="../img/magnify.png" /></span>');
  		$(this).find('span').animate(	{height: '100%', opacity: 0.8},400);
 });
 
@@ -239,7 +239,7 @@ $('.hover_top_in').mouseleave(function(){
   });
   
   $('.hover_left_in').mouseenter(function(){
-   		$(this).append('<span style="width:0"><img src="img/magnify.png" /></span>');
+   		$(this).append('<span style="width:0"><img src="../img/magnify.png" /></span>');
    		$(this).find('span').animate(	{width: '100%', opacity: 0.8},400);
   });
   
@@ -249,7 +249,7 @@ $('.hover_top_in').mouseleave(function(){
     });
   
   $('.hover_fade_in').mouseenter(function(){
-   		$(this).append('<span style="opacity:0"><img src="img/magnify.png" /></span>');
+   		$(this).append('<span style="opacity:0"><img src="../img/magnify.png" /></span>');
    		$(this).find('span').animate({opacity: 0.8},400);
   });
   
@@ -259,7 +259,7 @@ $('.hover_top_in').mouseleave(function(){
     });
   
   $('.hover_video_top_in').mouseenter(function(){
-   		$(this).append('<span style="height:0"><img src="img/video.png" /></span>');
+   		$(this).append('<span style="height:0"><img src="../img/video.png" /></span>');
    		$(this).find('span').animate(	{height: '100%', opacity: 0.8},400);
   });
   
@@ -269,7 +269,7 @@ $('.hover_top_in').mouseleave(function(){
     });
     
     $('.hover_video_left_in').mouseenter(function(){
-     		$(this).append('<span style="width:0"><img src="img/video.png" /></span>');
+     		$(this).append('<span style="width:0"><img src="../img/video.png" /></span>');
      		$(this).find('span').animate(	{width: '100%', opacity: 0.8},400);
     });
     

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  date: MyString
+  team1: MyString
+  team1_core: 1
+  team2: MyString
+  team2_score: 1
+  fdm: MyString
+
+two:
+  date: MyString
+  team1: MyString
+  team1_core: 1
+  team2: MyString
+  team2_score: 1
+  fdm: MyString
