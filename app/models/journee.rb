@@ -4,5 +4,5 @@ class Journee < ActiveRecord::Base
   has_many :journeecategorielinks
   has_many :journeecontentlinks
   has_many :categories, :through => :journeecategorielinks
-  has_many :contents, :through => :journeecontentlinks
+  has_many :contents, :through => :journeecontentlinks, :dependent => :destroy
 end

@@ -1,4 +1,7 @@
 class ParserController < ApplicationController
+	
+	before_filter :authenticate, :except => [:index, :viewcat]
+	
 	def index
 		@c = Categorie.all
 	end
@@ -56,15 +59,24 @@ class ParserController < ApplicationController
 		url = search.url
 		result = Parser.journee(url)
 		
-		result['journee'].each do |j|
-			journee = Journee.create(:title => j['titre'])
+		if !result.empty?
+			# Destruction des anciennes journees
+			search_j = search.journees
+			search_j.each do |sj|
+				sj.destroy
+			end
 			
-			Journeecategorielink.create(:journee_id => journee.id, :categorie_id => catId)
-			
-			j['content'].each do |c|
-				content = Content.create(:date => c['date'], :team1 => c['team1'], :team1core => c['team1_score'], :team2 => c['team2'], :team2score => c['team2_score'], :fdm => c['fdm'])
+			# Ecriture en BDD des nouvelles journees issu tu parser
+			result['journee'].each do |j|
+				journee = Journee.create(:title => j['titre'])
 				
-				Journeecontentlink.create(:content_id => content.id, :journee_id => journee.id)
+				Journeecategorielink.create(:journee_id => journee.id, :categorie_id => catId)
+				
+				j['content'].each do |c|
+					content = Content.create(:date => c['date'], :team1 => c['team1'], :team1core => c['team1_score'], :team2 => c['team2'], :team2score => c['team2_score'], :fdm => c['fdm'])
+					
+					Journeecontentlink.create(:content_id => content.id, :journee_id => journee.id)
+				end
 			end
 		end
 		
