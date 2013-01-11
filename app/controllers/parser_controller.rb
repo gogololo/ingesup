@@ -13,6 +13,19 @@ class ParserController < ApplicationController
 		@j = @search.journees
 	end
 	
+	def create
+		@cat = Categorie.new(params[:categorie])
+		
+		respond_to do |format|
+			if @cat.save
+				format.html { redirect_to :back }
+				format.json { render :json => @cat , :status => :created }
+			else
+				format.json { render :json => @cat.errors , :status => :unprocessable_entity }
+			end
+		end
+	end
+	
 	def classement
 		catId = params[:catId]
 		search = Categorie.find(catId)
