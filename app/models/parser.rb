@@ -54,16 +54,13 @@ class Parser
     	next if not el
     	cls['team'] = el.content
     	
-    	pts = num.search('td.pts').first
-    	next if not pts
-    	cls['points'] = pts.content
-    	
     	j = num.search('td')
     	next if not j
+    	cls['points'] = j[2].content
     	cls['journee'] = j[3].content
     	cls['gagne'] = j[4].content
     	cls['nuls'] = j[5].content
-    	cls['points'] = j[6].content
+    	cls['perdu'] = j[6].content
     	cls['but+'] = j[7].content
     	cls['but-'] = j[8].content
     	cls['diff'] = j[9].content

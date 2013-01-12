@@ -15,9 +15,12 @@ class ParserController < ApplicationController
 		
 		@j = @search.journees
 		
+		result = {}
+		result['classement'] = @tab
+		
 		respond_to do |format|
 			format.html # show.html.erb
-			format.json  { render :json => @tab }
+			format.json  { render :json => result }
 		end
 	end
 	
@@ -49,7 +52,7 @@ class ParserController < ApplicationController
 			
 			# Ecriture en BDD des nouveaux resultats issu tu parser
 			result.each do |r|
-				i = Resultat.create(:rang => r['rang'], :team => r['team'], :points => r['points'], :journee => r['journee'], :gagne => r['gagne'], :nuls => r['nuls'], :butplus => r['but+'], :butmoins => r['but-'], :diff => r['diff'])
+				i = Resultat.create(:rang => r['rang'], :team => r['team'], :points => r['points'], :journee => r['journee'], :gagne => r['gagne'], :nuls => r['nuls'], :butplus => r['but+'], :butmoins => r['but-'], :diff => r['diff'], :perdu => r['perdu'])
 				
 				Resultatcategorielink.create(:resultat_id => i.id, :categorie_id => catId)
 			end
