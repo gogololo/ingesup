@@ -14,6 +14,11 @@ class ParserController < ApplicationController
 		end
 		
 		@j = @search.journees
+		
+		respond_to do |format|
+			format.html # show.html.erb
+			format.json  { render :json => @tab }
+		end
 	end
 	
 	def create
