@@ -16,6 +16,7 @@ class ParserController < ApplicationController
 		@j = @search.journees
 		
 		jour = []
+		i = 1
 		@j.each do |j|
 			jo = {}
 			jo['titre'] = j['title']
@@ -33,7 +34,9 @@ class ParserController < ApplicationController
 				
 				content.push(c)
 			end
-			jo['content'] = content
+			name_j = 'journee_'+i.to_s
+			jo[name_j] = content
+			i = i + 1
 			
 			jour.push(jo)
 		end
