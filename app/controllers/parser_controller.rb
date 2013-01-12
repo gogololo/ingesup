@@ -15,8 +15,33 @@ class ParserController < ApplicationController
 		
 		@j = @search.journees
 		
+		jour = []
+		@j.each do |j|
+			jo = {}
+			jo['titre'] = j['title']
+			find = Journee.find(j['id'])
+			find_content = find.contents
+			content = []
+			find_content.each do |f|
+				c = {}
+				c['team1'] = f['team1']
+				c['team2'] = f['team2']
+				c['team1score'] = f['team1core']
+				c['team2score'] = f['team2score']
+				c['date'] = f['date']
+				c['fdm'] = f['fdm']
+				
+				content.push(c)
+			end
+			jo['content'] = content
+			
+			jour.push(jo)
+		end
+		
 		result = {}
 		result['classement'] = @tab
+		result['journee'] = jour
+		
 		
 		respond_to do |format|
 			format.html # show.html.erb
