@@ -19,7 +19,7 @@ class ParserController < ApplicationController
 		i = 1
 		@j.each do |j|
 			jo = {}
-			jo['titre'] = j['title']
+			#jo['titre'] = j['title']
 			find = Journee.find(j['id'])
 			find_content = find.contents
 			content = []

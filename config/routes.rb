@@ -1,4 +1,6 @@
 Blog::Application.routes.draw do
+  get "admin/index"
+
   get "project/index"
 
   # The priority is based upon order of creation:
