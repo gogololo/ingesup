@@ -11,8 +11,34 @@ class ParserController < ApplicationController
 		@tab = @search.resultats
 		if !@tab.empty?
 			@last_update = @tab[0]['created_at']
+			
+			dd = @last_update + 2.day
+			today = Time.now
+			
+			if today > dd
+				self.classement
+			end
+		else
+			self.classement
 		end
 		
+		@j = @search.journees
+		if !@j.empty?
+			@last_update_j = @j[0]['created_at']
+			
+			dd = @last_update_j + 2.day
+			today = Time.now
+			
+			if today > dd
+				self.journee
+				
+			end
+		else
+			self.journee
+		end
+		
+		@search = Categorie.find(params[:catId])
+		@tab = @search.resultats
 		@j = @search.journees
 		
 		jour = []
@@ -86,7 +112,7 @@ class ParserController < ApplicationController
 			end
 		end
 		#render :json => result
-		redirect_to :back
+		#redirect_to :back
 	end
 	
 	def journee
@@ -103,12 +129,12 @@ class ParserController < ApplicationController
 			end
 			
 			# Ecriture en BDD des nouvelles journees issu tu parser
-			result['journee'].each do |j|
-				journee = Journee.create(:title => j['titre'])
+			result['journee'].each do |jj|
+				journee = Journee.create(:title => jj['titre'])
 				
 				Journeecategorielink.create(:journee_id => journee.id, :categorie_id => catId)
 				
-				j['content'].each do |c|
+				jj['content'].each do |c|
 					content = Content.create(:date => c['date'], :team1 => c['team1'], :team1core => c['team1_score'], :team2 => c['team2'], :team2score => c['team2_score'], :fdm => c['fdm'])
 					
 					Journeecontentlink.create(:content_id => content.id, :journee_id => journee.id)
@@ -117,6 +143,6 @@ class ParserController < ApplicationController
 		end
 		
 		#render :json => result
-		redirect_to :back
+		#redirect_to :back
 	end
 end

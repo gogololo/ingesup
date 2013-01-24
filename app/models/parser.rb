@@ -15,17 +15,7 @@ class Parser
     i.fetchJ(url)
   end
   
-  def fetch(url)
-    #@url = "http://www.ff-handball.org/competitions/seniors-masculins/championnats-nationaux/n2m/resultats.html"
-    @url = url
-    Rails.logger.debug('=================> HTTP CALL')
-    @response = HTTParty.get(@url) # BLOCKING
-    #Mise en cache
-    result = self.parseresult
-    Rails.cache.write('result', result, :expires_in => 1.minutes) if result
-    result
-    
-  end
+  
   
   def fetchJ(url)
     @url = url
@@ -35,6 +25,18 @@ class Parser
     journee = self.parsejournee
     Rails.cache.write('journee', journee, :expires_in => 1.minutes) if journee
     journee
+    
+  end
+  
+  def fetch(url)
+    #@url = "http://www.ff-handball.org/competitions/seniors-masculins/championnats-nationaux/n2m/resultats.html"
+    @url = url
+    Rails.logger.debug('=================> HTTP CALL')
+    @response = HTTParty.get(@url) # BLOCKING
+    #Mise en cache
+    result = self.parseresult
+    Rails.cache.write('result', result, :expires_in => 1.minutes) if result
+    result
     
   end
   
