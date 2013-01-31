@@ -6,4 +6,7 @@ class Categorie < ActiveRecord::Base
   
   has_many :journeecategorielinks
   has_many :journees, :through => :journeecategorielinks
+  
+  has_many :categories_championats, :class_name => 'CategoriesChampionats'
+  has_many :championats, :through => :categories_championats, :source => :championat
 end

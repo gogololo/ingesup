@@ -15,10 +15,22 @@
 		  <div class="content">
 			  <div class="span12">
 			  	<%= render 'admin/menu' %>
+			  	<br />
+			  	<div class="accordion-group">
+			  		<div class="accordion-heading">
+			  		  <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseone">
+			  		     Ajouter un championat <i class="right icon-chevron-down"></i>
+			  		  </a>
+			  		</div>
+			  		<div id="collapseone" class="accordion-body collapse">
+			  		  <div class="accordion-inner">
+			  		  	<%= render "admin/form-championat" %>
+			  		  </div>
+			  		</div>
+			  	</div>
 			  </div>
 		  </div>
 		</div>
 	</section>
 	</div>
 </div>
-

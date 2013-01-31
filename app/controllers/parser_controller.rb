@@ -79,16 +79,23 @@ class ParserController < ApplicationController
 	end
 	
 	def create
-		@cat = Categorie.new(params[:categorie])
+		@cat = Categorie.create(params[:categorie])
+		
+		data = {}
+		data[:categorie_id] = @cat.id
+		data[:championat_id] = params[:championat][:championat_id]
+		link = CategoriesChampionats.new(data)
 		
 		respond_to do |format|
-			if @cat.save
+			if link.save
 				format.html { redirect_to :back }
 				format.json { render :json => @cat , :status => :created }
 			else
 				format.json { render :json => @cat.errors , :status => :unprocessable_entity }
 			end
 		end
+		
+		
 	end
 	
 	def classement

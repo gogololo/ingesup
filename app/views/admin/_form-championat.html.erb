@@ -1,0 +1,9 @@
+<% @champ = Championat.new %>
+<%= form_for @champ, :url => { :action => "createchampionat" } do |post_form| %>
+	<div class="field">
+	    <%= post_form.text_field :name, :placeholder => 'Nom' %>
+	  </div>
+	  <div class="actions">
+	    <%= post_form.submit "Ajouter" %>
+	  </div>
+<% end %>

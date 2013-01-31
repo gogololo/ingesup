@@ -1,6 +1,9 @@
 <% @cat = Categorie.new %>
 <%= form_for @cat, :url => { :action => "create" } do |post_form| %>
 	<div class="field">
+		<%= select :championat, :championat_id, (Championat.all.collect{|p| [p.name, p.id]}) %>
+	</div>
+	<div class="field">
 	    <%= post_form.text_field :name, :placeholder => 'Nom' %>
 	  </div>
 	  <div class="field">
