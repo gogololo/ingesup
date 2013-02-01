@@ -6,7 +6,8 @@ class AdminController < ApplicationController
   end
   
   def championat
-  
+  	@champ = Championat.new
+  	@ch = Championat.all
   end
   
   def createchampionat
@@ -20,5 +21,13 @@ class AdminController < ApplicationController
   			format.json { render :json => @cat.errors , :status => :unprocessable_entity }
   		end
   	end
+  end
+  
+  def editchamp
+  	@champ = Championat.find(params[:id])
+  end
+  
+  def category
+  	@c = Categorie.all
   end
 end

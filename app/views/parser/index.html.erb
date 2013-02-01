@@ -27,27 +27,37 @@
 	<br />
 	<div class="row">
 		<div class="content">
-			<!-- BEGIN Portfolio ROW-->  		
+			<!-- BEGIN Portfolio ROW--> 
+			
+			<% @ch.each do |ch| %>
+			<% 
+				search = Championat.find(ch['id'])
+				cat = search.categories
+			%>
 			<div class="portfolioarea">
-				<h3 class="title"><span>Championnats nationaux</span></h3>
+				<h3 class="title"><span><%= ch['name'] %></span></h3>
 			 	<div class="portfolio_carousel flexslider">
 			 	  <ul class="slides">
-			 	    <% @c.each do |c| %>
+			 	    <% cat.each do |c| %>
 			 	    <li>
 			 	      <div class="portfolioitem">
 			 	      	<div class="portfolio_thumb">
 			 	      	  <%= link_to image_tag('hand_wall.jpg'), {:controller => "parser", :action => "viewcat", :catId => c['id'] }, :class => 'hover_fade_in' %>
 			 	      	</div>
 			 	      	<h4 class="portfolio_title"> <%= c['name'] %>
-			 	      	<small class="categories">Nationaux / <%= c['name'] %></small></h4>
+			 	      	<small class="categories">Nationaux / <%= c['name'] %></small>
+			 	      	</h4>
 			 	      	</div>
 			 	    </li>
 			 	    <% end %>
 			 	  </ul>
 			 	</div>
-			 	
-			</div> 
+			 	<% end %>
+			</div>  
 			<!-- END PROJECTS AREA -->
+			<br/>
+			<br />
+			
 		</div>
 	</div> 
  </section>	

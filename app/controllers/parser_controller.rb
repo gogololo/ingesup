@@ -4,6 +4,7 @@ class ParserController < ApplicationController
 	
 	def index
 		@c = Categorie.all
+		@ch = Championat.all
 	end
 	
 	def viewcat
@@ -111,7 +112,7 @@ class ParserController < ApplicationController
 				re.destroy
 			end
 			
-			# Ecriture en BDD des nouveaux resultats issu tu parser
+			# Ecriture en BDD des nouveaux resultats issu du parser
 			result.each do |r|
 				i = Resultat.create(:rang => r['rang'], :team => r['team'], :points => r['points'], :journee => r['journee'], :gagne => r['gagne'], :nuls => r['nuls'], :butplus => r['but+'], :butmoins => r['but-'], :diff => r['diff'], :perdu => r['perdu'])
 				

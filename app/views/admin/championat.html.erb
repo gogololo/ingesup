@@ -28,9 +28,52 @@
 			  		  </div>
 			  		</div>
 			  	</div>
+			  	<br />
+			  	<table class="table table-bordered" style="float: left" >
+				  <thead>
+				    <tr>
+				      <th>Id</th>
+				      <th>Nom</th>
+				      <th>Ajouté le</th>
+				      <th></th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <% @ch.each do |t| %>
+				    <tr>
+				      <td><%= t['id'] %></td>
+				      <td><%= t['name'] %></td>
+				      <td><%= t['created_at'] %></td>
+				      <td>
+				      	<center>
+				      	<%= link_to image_tag('edit.png'), {:controller => "admin", :action => "deletechampionat", :chpId => t['id'] }, :class => '' %>
+				      	<%= link_to image_tag('bin.png'), {:controller => "admin", :action => "deletechampionat", :chpId => t['id'] }, :class => '' %>
+				      	</center>
+				      </td>
+				    </tr>
+				    <% end %>
+				  </tbody>
+				</table>
+				<div id="form" style="display: none; float: left; width: 25%" >
+					<form action="" method="post">
+						<input type="text">
+						<input type="submit">
+					</form>
+					
+				</div>
+				<div style="clear:both"></div>
 			  </div>
 		  </div>
 		</div>
 	</section>
 	</div>
 </div>
+
+<script>
+$(".table").click(function(){
+      $(".table").animate({ 
+        width: "70%"
+      }, 1500 );
+      $("#form").show('slide');
+    });
+</script>

@@ -1,0 +1,46 @@
+<div class="container">
+ 	<div class="row">
+		<section class="main-section">
+			<div class="breadcrumbs">
+				<a href="index.html">Admin</a>/<a>Home</a>                        
+			</div>
+			<div class="tagline">
+                <h3 class="regular-size left">Administration</h3>
+                <h6 class="subheader">Administration du gill-parser</h6>
+			</div>
+		  		
+		  	      	    
+		<div class="row">
+				<!-- BEGIN Page Content -->
+		  <div class="content">
+			  <div class="span12">
+			  	<%= render 'admin/menu' %>
+			  	<br />
+			  	<table class="table table-bordered">
+				  <thead>
+				    <tr>
+				      <th>Id</th>
+				      <th>Nom</th>
+				      <th>URL</th>
+				      <th>Ajouté le</th>
+				      <th></th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <% @c.each do |t| %>
+				    <tr>
+				      <td><%= t['id'] %></td>
+				      <td><%= t['name'] %></td>
+				      <td><%= t['url'] %></td>
+				      <td><%= t['created_at'] %></td>
+				      <td><center><%= link_to image_tag('bin.png'), {:controller => "admin", :action => "deletecategory", :catId => t['id'] }, :class => '' %></center></td>
+				    </tr>
+				    <% end %>
+				  </tbody>
+				</table>
+			  </div>
+		  </div>
+		</div>
+	</section>
+	</div>
+</div>

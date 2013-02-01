@@ -33,13 +33,6 @@ ActiveRecord::Schema.define(:version => 20130125133245) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "championats_categories", :force => true do |t|
-    t.integer  "championat_id"
-    t.integer  "categorie_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-  end
-
   create_table "contents", :force => true do |t|
     t.string   "date"
     t.string   "team1"
